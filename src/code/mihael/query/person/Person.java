@@ -1,8 +1,6 @@
 package code.mihael.query.person;
 
-import code.mihael.query.api.QueryResult;
-
-public class Person extends QueryResult {
+public class Person {
 
 	private String name;
 	private int age;
