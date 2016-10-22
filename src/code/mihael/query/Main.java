@@ -7,7 +7,6 @@ public class Main {
 	public static void main(String... args) {
 		long start = System.currentTimeMillis();
 		
-		
 		Person p = Person.newQuery().names("Mihael").results().first();
 		System.out.println(p.getName() + " -> " + p.getAge());
 
