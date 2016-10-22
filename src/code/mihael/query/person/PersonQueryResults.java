@@ -26,4 +26,9 @@ public class PersonQueryResults extends QueryResults<Person> {
 		return size > 0 ? results.get(Functions.random(0, size)) : null;
 	}
 
+	@Override
+	public List<Person> asList() {
+		return results;
+	}
+
 }

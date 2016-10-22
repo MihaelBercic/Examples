@@ -1,5 +1,7 @@
 package code.mihael.query;
 
+import code.mihael.query.animal.Animal;
+import code.mihael.query.animal.Gender;
 import code.mihael.query.api.Functions;
 import code.mihael.query.person.Person;
 
@@ -9,12 +11,11 @@ public class Main {
 		long start = System.currentTimeMillis();
 
 		Person p = Person.newQuery().names("Mihael").results().first();
-		System.out.println(p.getName() + " -> " + p.getAge());
-
 		Person r = Person.newQuery().ages(99).results().random();
-		if (r != null) {
-			System.out.println(r.getName() + " -> " + r.getAge());
-		}
+		
+		Animal.newQuery().genders(Gender.FEMALE).results().asList().forEach(a -> {
+			System.out.println(a.getName());
+		});
 
 		long stop = System.currentTimeMillis();
 		long duration = stop - start;
