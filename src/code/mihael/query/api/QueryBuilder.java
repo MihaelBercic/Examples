@@ -1,7 +1,7 @@
 package code.mihael.query.api;
 
-public abstract class QueryBuilder {
+public abstract class QueryBuilder<T> {
 
-	public abstract QueryResults<?> results();
+	public abstract QueryResults<T> results();
 
 }

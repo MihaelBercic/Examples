@@ -8,9 +8,8 @@ import java.util.stream.Collectors;
 
 import code.mihael.query.api.Functions;
 import code.mihael.query.api.QueryBuilder;
-import code.mihael.query.api.QueryResults;
 
-public class PersonQueryBuilder extends QueryBuilder {
+public class PersonQueryBuilder extends QueryBuilder<Person> {
 
 	private List<Person> people = new ArrayList<>();
 
@@ -46,7 +45,5 @@ public class PersonQueryBuilder extends QueryBuilder {
 		}).collect(Collectors.toList());
 		return new PersonQueryResults(accepted);
 	}
-
-
 
 }
