@@ -7,8 +7,10 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import code.mihael.query.api.Functions;
+import code.mihael.query.api.QueryBuilder;
+import code.mihael.query.api.QueryResults;
 
-public class PersonQueryBuilder {
+public class PersonQueryBuilder extends QueryBuilder {
 
 	private List<Person> people = new ArrayList<>();
 
@@ -29,6 +31,7 @@ public class PersonQueryBuilder {
 		return this;
 	}
 
+	@Override
 	public PersonQueryResults results() {
 		List<Person> accepted = people.stream().filter(a -> {
 			boolean b = true;
@@ -43,5 +46,7 @@ public class PersonQueryBuilder {
 		}).collect(Collectors.toList());
 		return new PersonQueryResults(accepted);
 	}
+
+
 
 }
