@@ -1,7 +1,7 @@
 # Examples
 <b>QueryBuilder example:</b><br>
 ```java
-Person p = Person.newQuery().names("Mihael").results().random();
+Person p = Person.newQuery().results().random();
 /*System.out.println(p.getName() + " -> " + p.getAge());*/
 ```
 <b>QueryBuilder output: </b> <br />
