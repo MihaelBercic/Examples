@@ -1,4 +1,4 @@
-package code.mihael.query;
+package code.mihael.query.person;
 
 public class Person {
 
