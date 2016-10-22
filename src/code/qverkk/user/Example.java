@@ -1,4 +1,4 @@
-package java.com.qverkk.user;
+package code.qverkk.user;
 
 import java.util.ArrayList;
 import java.util.List;
