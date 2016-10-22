@@ -6,6 +6,10 @@ Person oldPerson = Person.newQuery().ages(99).results().random();
 Person mihael = Person.newQuery().names("Mihael").results().random();
 
 /*System.out.println(p.getName() + " -> " + p.getAge());*/
+
+Animal.newQuery().genders(Gender.FEMALE).results().asList().forEach(a -> {
+	System.out.println(a.getName());
+});
 ```
 <b>QueryBuilder output: </b> <br />
 
