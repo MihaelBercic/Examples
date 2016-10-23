@@ -10,7 +10,6 @@ import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import code.mihael.query.api.QueryBuilder;
-import code.mihael.query.api.QueryResults;
 
 public class AnimalQueryBuilder extends QueryBuilder<Animal> {
 
@@ -59,7 +58,7 @@ public class AnimalQueryBuilder extends QueryBuilder<Animal> {
 	}
 
 	@Override
-	public QueryResults<Animal> results() {
+	public AnimalQueryResults results() {
 		List<Animal> accepted = animals.stream().filter(a -> {
 
 			if (names != null && Arrays.binarySearch(names, a.getName()) < 0) {
