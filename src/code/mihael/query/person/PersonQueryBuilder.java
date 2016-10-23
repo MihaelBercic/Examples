@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.function.Predicate;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.util.stream.Collectors;
@@ -18,6 +19,8 @@ public class PersonQueryBuilder extends QueryBuilder<Person> {
 	private String[] name;
 	private Pattern namePattern;
 	private int[] age;
+	private Predicate<Integer> agePredicate;
+	private Predicate<Person> personPredicate;
 
 	public PersonQueryBuilder() {
 		Collections.addAll(people, new Person("Mihael", 17), new Person("Party", 99), new Person("Slash", 99), new Person("Savior", 99));
@@ -39,6 +42,16 @@ public class PersonQueryBuilder extends QueryBuilder<Person> {
 		return this;
 	}
 
+	public PersonQueryBuilder ages(Predicate<Integer> ages) {
+		this.agePredicate = ages;
+		return this;
+	}
+
+	public PersonQueryBuilder filter(Predicate<Person> predicatePerson) {
+		this.personPredicate = predicatePerson;
+		return this;
+	}
+
 	@Override
 	public PersonQueryResults results() {
 
@@ -56,7 +69,17 @@ public class PersonQueryBuilder extends QueryBuilder<Person> {
 
 			if (namePattern != null) {
 				Matcher m = namePattern.matcher(a.getName());
-				return m.matches();
+				if (!m.matches()) {
+					return false;
+				}
+			}
+
+			if (agePredicate != null && !agePredicate.test(a.getAge())) {
+				return false;
+			}
+
+			if (personPredicate != null && !personPredicate.test(a)) {
+				return false;
 			}
 			return true;
 		}).collect(Collectors.toList());

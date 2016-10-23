@@ -1,6 +1,7 @@
 package code.mihael.query.person;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import code.mihael.query.api.Functions;
 import code.mihael.query.api.QueryResults;
@@ -31,4 +32,8 @@ public class PersonQueryResults extends QueryResults<Person> {
 		return results;
 	}
 
+	@Override
+	public void forEach(Consumer<Person> args) {
+		results.forEach(a -> args.accept(a));
+	}
 }

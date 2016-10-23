@@ -19,6 +19,7 @@ public class AnimalQueryBuilder extends QueryBuilder<Animal> {
 	private Gender[] genders;
 	private Pattern namePattern;
 	private Predicate<Integer> agesPredicate;
+	private Predicate<Animal> animalPredicate;
 
 	private List<Animal> animals = new ArrayList<>();
 
@@ -52,6 +53,11 @@ public class AnimalQueryBuilder extends QueryBuilder<Animal> {
 		return this;
 	}
 
+	public AnimalQueryBuilder filter(Predicate<Animal> animalPredicate) {
+		this.animalPredicate = animalPredicate;
+		return this;
+	}
+
 	@Override
 	public QueryResults<Animal> results() {
 		List<Animal> accepted = animals.stream().filter(a -> {
@@ -70,10 +76,16 @@ public class AnimalQueryBuilder extends QueryBuilder<Animal> {
 
 			if (namePattern != null) {
 				Matcher m = namePattern.matcher(a.getName());
-				return m.matches();
+				if (!m.matches()) {
+					return false;
+				}
 			}
 
 			if (agesPredicate != null && !agesPredicate.test(a.getAge())) {
+				return false;
+			}
+
+			if (animalPredicate != null && !animalPredicate.test(a)) {
 				return false;
 			}
 

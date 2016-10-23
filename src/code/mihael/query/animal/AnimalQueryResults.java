@@ -1,6 +1,7 @@
 package code.mihael.query.animal;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 import code.mihael.query.api.Functions;
 import code.mihael.query.api.QueryResults;
@@ -28,6 +29,11 @@ public class AnimalQueryResults extends QueryResults<Animal> {
 	@Override
 	public List<Animal> asList() {
 		return accepted;
+	}
+
+	@Override
+	public void forEach(Consumer<Animal> args) {
+		accepted.forEach(a -> args.accept(a));
 	}
 
 }
