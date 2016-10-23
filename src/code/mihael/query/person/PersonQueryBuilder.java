@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
 
 import code.mihael.query.api.Functions;
@@ -14,6 +16,7 @@ public class PersonQueryBuilder extends QueryBuilder<Person> {
 	private List<Person> people = new ArrayList<>();
 
 	private String[] name;
+	private Pattern namePattern;
 	private int[] age;
 
 	public PersonQueryBuilder() {
@@ -25,23 +28,37 @@ public class PersonQueryBuilder extends QueryBuilder<Person> {
 		return this;
 	}
 
+	public PersonQueryBuilder names(Pattern pattern) {
+		this.namePattern = pattern;
+		return this;
+	}
+
 	public PersonQueryBuilder ages(int... ages) {
+		Arrays.sort(ages);
 		this.age = ages;
 		return this;
 	}
 
 	@Override
 	public PersonQueryResults results() {
+
 		List<Person> accepted = people.stream().filter(a -> {
-			boolean b = true;
-			if (name != null) {
-				b = b && Arrays.asList(name).contains(a.getName());
+			if (name != null && Arrays.binarySearch(name, a.getName()) < 0) {
+				return false;
 			}
 
-			if (age != null) {
-				b = b && Functions.arrayContains(age, a.getAge());
+			if (age != null && Arrays.binarySearch(age, a.getAge()) < 0) {
+				System.out.println(~Arrays.binarySearch(age, a.getAge()));
+				System.out.println(Functions.arrayContains(age, a.getAge()));
+				System.out.println(a.getName() + " -> Does not suite.");
+				return false;
 			}
-			return b;
+
+			if (namePattern != null) {
+				Matcher m = namePattern.matcher(a.getName());
+				return m.matches();
+			}
+			return true;
 		}).collect(Collectors.toList());
 		return new PersonQueryResults(accepted);
 	}

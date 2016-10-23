@@ -25,4 +25,9 @@ public class Functions {
 		return (hours < 10 ? "0" + hours : hours) + ":" + (minutes < 10 ? "0" + minutes : minutes) + ":" + (seconds < 10 ? "0" + seconds : seconds) + (toMili ? ":" + mili : "");
 	}
 
+	public static String capitalize(String arg) {
+		arg = arg.replaceAll("_", " ");
+		return arg.substring(0, 1).toUpperCase() + arg.substring(1).toLowerCase();
+	}
+
 }
