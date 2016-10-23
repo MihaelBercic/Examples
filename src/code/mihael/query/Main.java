@@ -25,6 +25,8 @@ public class Main {
 		Animal.newQuery().ages(a -> a > 0 && a < 100).names(Pattern.compile("Do.*")).results().asList().forEach(a -> {
 			System.out.println(a.getName() + " is " + a.getAge() + (a.getAge() > 1 ? " years old." : " year old.") + " " + a.getName() + " is " + a.getGender().toString());
 		});
+		
+		Animal.newQuery().genders(Gender.APACHE_HELICOPTER).results().first();
 
 		timer.stop();
 		System.out.println(timer.getDurationAsString(true));
