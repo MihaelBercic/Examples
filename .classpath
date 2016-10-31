@@ -3,5 +3,7 @@
 	<classpathentry excluding="src/" kind="src" path=""/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry kind="lib" path="C:/Users/natalia/Desktop/Notifications_1.0.0.jar"/>
+	<classpathentry kind="lib" path="C:/Users/natalia/Desktop/RuneMate/Spectre/RuneMate.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
