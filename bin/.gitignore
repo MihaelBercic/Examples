@@ -1,6 +1,0 @@
-*.class
-.project
-*.md
-*.classpath
-/.gitignore
-/code/
