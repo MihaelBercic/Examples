@@ -12,9 +12,11 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
+import code.mihael.practice.phone.data.MethodEvent;
+
 public class Phone extends JFrame {
 
-	private JLabel label = new JLabel("Test");
+	private JLabel label = new JLabel("");
 	private JPanel panel = new JPanel();
 	private Map<String, char[]> buttonFields = new LinkedHashMap<String, char[]>() {
 		{
@@ -31,20 +33,35 @@ public class Phone extends JFrame {
 
 		}
 	};
-	private int i = 0, x = 10, y = 40, press = 0;
-	private int btnWidth = 50, btnHeight = 50;
-	private int lastPressed = 0;
+	private int i = 0, x = 10, y = 40, press = 0, btnWidth = 50, btnHeight = 50;
+	private String lastPressed, text = "";
 	private char currentCharacter;
-	private String text = "";
+	private Timer timer = new Timer();
 
 	public Phone() {
 		initialize();
 
-		Timer timer = new Timer();
 		timer.setExpire(TimeUnit.SECONDS, 3);
 		timer.addActionListener(MethodEvent.RESTART, () -> label.setText(text + currentCharacter));
 		timer.start();
 
+		generateKeys();
+	}
+
+	private void initialize() {
+		setTitle("Mobile phone test");
+		setSize(200, 300);
+		setVisible(true);
+		setLocationRelativeTo(null);
+		setDefaultCloseOperation(EXIT_ON_CLOSE);
+		add(panel);
+		panel.setLayout(null);
+
+		panel.add(label);
+		label.setBounds(10, 10, 100, 30);
+	}
+
+	private void generateKeys() {
 		buttonFields.entrySet().forEach(e -> {
 			String btn = e.getKey();
 			char[] val = e.getValue();
@@ -66,7 +83,7 @@ public class Phone extends JFrame {
 
 				@Override
 				public void actionPerformed(ActionEvent e) {
-					int pressedKey = Integer.parseInt(key.getName());
+					String pressedKey = key.getName();
 					if (lastPressed != pressedKey || !timer.isRunning()) {
 						press = 0;
 						lastPressed = pressedKey;
@@ -79,7 +96,7 @@ public class Phone extends JFrame {
 							press = 0;
 						}
 						if (size == 0) {
-							currentCharacter = (char) pressedKey;
+							currentCharacter = pressedKey.charAt(0);
 						} else {
 							currentCharacter = val[press];
 							press++;
@@ -103,20 +120,6 @@ public class Phone extends JFrame {
 				x += btnWidth + 5;
 			}
 		});
-
-	}
-
-	private void initialize() {
-		setTitle("Mobile phone test");
-		setSize(200, 300);
-		setVisible(true);
-		setLocationRelativeTo(null);
-		setDefaultCloseOperation(EXIT_ON_CLOSE);
-		add(panel);
-		panel.setLayout(null);
-
-		panel.add(label);
-		label.setBounds(10, 10, 100, 30);
 	}
 
 }

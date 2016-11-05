@@ -1,4 +1,4 @@
-package code.mihael.practice.phone;
+package code.mihael.practice.phone.data;
 
 public enum MethodEvent {
 
