@@ -21,6 +21,7 @@ public class BasicScript extends LoopingBot {
 
 	@Override
 	public void onLoop() {
+	   if(RuneScape.isLoggedIn()){
 		Player player = Players.getLocal();
 		if (player.getPosition().equals(safeSpot)) {
 			if (isReadyToAttack(player)) {
@@ -45,6 +46,7 @@ public class BasicScript extends LoopingBot {
 			// Region
 			pathToSpot = RegionPath.buildTo(safeSpot);
 		}
+	    }
 	}
 
 	private boolean isReadyToAttack(Player player) {
