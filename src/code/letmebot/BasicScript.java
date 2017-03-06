@@ -20,6 +20,7 @@ public class BasicScript extends LoopingBot {
 
 	@Override
 	public void onLoop() {
+<<<<<<< HEAD
 		if (RuneScape.isLoggedIn()) {
 			Player player = Players.getLocal();
 			if (player.getPosition().equals(safeSpot)) {
@@ -32,6 +33,17 @@ public class BasicScript extends LoopingBot {
 							}
 						} else {
 							Camera.turnTo(target.getPosition().randomize(Random.nextInt(0, 10), Random.nextInt(0, 10)));
+=======
+	   if(RuneScape.isLoggedIn()){
+		Player player = Players.getLocal();
+		if (player.getPosition().equals(safeSpot)) {
+			if (isReadyToAttack(player)) {
+				Npc target = Npcs.newQuery().names("Moss giant").results().nearest();
+				if (target != null) {
+					if (target.isVisible()) {
+						if (target.interact("Attack")) {
+							System.out.println("Interaction with target: successful");
+>>>>>>> origin/master
 						}
 					}
 				}
@@ -47,6 +59,7 @@ public class BasicScript extends LoopingBot {
 			}
 
 		}
+	    }
 	}
 
 	private boolean isReadyToAttack(Player player) {
