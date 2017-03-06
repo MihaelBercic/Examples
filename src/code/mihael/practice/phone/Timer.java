@@ -25,7 +25,7 @@ public class Timer {
 			Thread t = new Thread(() -> {
 				while (System.currentTimeMillis() - start < expire) {
 				}
-				if(isRunning){
+				if (isRunning) {
 					stop();
 				}
 			});
