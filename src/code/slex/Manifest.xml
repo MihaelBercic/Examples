@@ -1,0 +1,25 @@
+<manifest>
+    <main-class>net.slex.MainClass</main-class>
+    <name>SirBolton</name>
+    <tag-line>Makes Broad Arrows fast</tag-line><!--Max of 50 chars-->
+    <description>Makes Broad Arrows fast</description><!--Max of 110 chars-->
+    <version>1.0.0</version>
+    <compatibility>
+        <game>RS3</game>
+    </compatibility>
+    <categories>
+        <category>FLETCHING</category>
+    </categories>
+    <!--Required to publish on the bot store-->
+    <internal-id>TestFletcher</internal-id>
+    <hidden>false</hidden> <!--If you need to hide it from the bot store for maintenance-->
+    <access>public</access>
+
+    <resources>
+        <resource>net/slex/ui/ui.fxml</resource>
+    </resources>
+    <tags>
+        <tag>Arrow</tag>
+        <tag>Bolt</tag>
+    </tags>
+</manifest>
