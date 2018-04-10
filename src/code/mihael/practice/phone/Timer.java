@@ -66,9 +66,7 @@ public class Timer {
 		}
 		start = System.currentTimeMillis();
 		isRunning = true;
-		if (r != null) {
-			r.run();
-		}
+		if (r != null) { r.run(); }
 	}
 
 	public void addActionListener(MethodEvent e, Runnable r) {
