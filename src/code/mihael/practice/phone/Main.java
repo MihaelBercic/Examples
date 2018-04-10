@@ -12,7 +12,6 @@ public class Main {
 	public static void main(String... args) throws Exception {
 		// UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		// SwingUtilities.invokeLater(() -> new Phone());
-
 		Timer timer = new Timer();
 		timer.addActionListener(MethodEvent.STOP, () -> System.out.println("ROBINPC IS A NEWB"));
 		timer.start();
